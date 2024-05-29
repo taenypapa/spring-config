@@ -1,2 +1,14 @@
 demo:
   message: Hello Default World with refresh bus222!!
+
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: path_route
+            uri: https://example.org
+            predicates:
+              - Path=/red/{segment},/blue/{segment}
+            filters:
+              - AddRequestHeader=X-Request-red, blue
